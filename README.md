@@ -1,10 +1,8 @@
-# dwstalk
+# A data web service
 
 A data web service, lightning talk.
 
 > Leipzig Gophers #23, 2021-11-23, 19:00 CET
-
-# A data web service
 
 A few notes on KISS, sqlite and Go (and [citation graphs](https://arxiv.org/abs/2110.06595)).
 
