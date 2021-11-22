@@ -138,6 +138,9 @@ Timings:
 | index 1/2     | 6            | 20                | 500,000   |
 | index 2/2     | 18           | 38                | 263,157   |
 
+Not quite 1B rows per minute, but about 42,840,000 per minute w/o indexing.
 
+* [https://lobste.rs/s/z4gahf/inserting_one_billion_rows_sqlite_under](https://lobste.rs/s/z4gahf/inserting_one_billion_rows_sqlite_under)
 
+Anyway, we can turn our original 1B dataset into a indexed database in 75 minutes.
 
