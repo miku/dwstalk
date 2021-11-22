@@ -98,7 +98,7 @@ For query performance we'll need indices, too.
 
 ## Putting it all together
 
-* minimal tool: [makta](https://github.com/miku/makta)
+* minimal tool: [makta](https://github.com/miku/makta), turns (two column) TSV into an sqlite3 database
 
 Example usage, 10M rows, 548MB file.
 
@@ -132,12 +132,12 @@ sys     0m5.664s
 
 Timings:
 
-|               | elapsed   | cumulative    | rows/s    |
-|-----------    |---------  |------------   |--------   |
-| import        | 14        | 14            | 714285    |
-| index 1/2     | 6         | 20            | 500000    |
-| index 2/2     | 18        | 38            | 263157    |
-| total         | 38        | 38            | 263157    |
+|               | elapsed (s)  | cumulative (s)    | rows/s    |
+|-----------    |------------  |-----------------  |--------   |
+| import        | 14           | 14                | 714,285   |
+| index 1/2     | 6            | 20                | 500,000   |
+| index 2/2     | 18           | 38                | 263,157   |
+| total         | 38           | 38                | 263,157   |
 
 
 
