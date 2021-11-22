@@ -48,7 +48,7 @@ Or for real:
     10.1016/s0002-8703(05)80031-6   10.1161/01.cir.79.4.756
 
 There are 1,186,958,897 rows, 10GB compressed, 57GB uncompressed - we'll need
-simple queries only, akin to a key value store, e.g. getting all value for a
+simple queries only, akin to a key value store, e.g. getting all values for a
 key or all keys for a value.
 
 ## The most deployed database
@@ -187,7 +187,7 @@ Or, if you really want extra tooling:
 
 * [sqlc](https://sqlc.dev/)
 
-Anyway, I choose - again - [sqlx](https://github.com/jmoiron/sqlx)
+Anyway, I chose - again - [sqlx](https://github.com/jmoiron/sqlx).
 
 ## Web Service
 
