@@ -25,6 +25,8 @@ Outline and idea for a batch processing system existed, but we thought:
 
 * Can we fuse data on-the-fly when it is requested?
 
+![](static/Labe.png)
+
 ## Initial Import
 
 The graph data looks like this - two columns, like an simple edge list:
@@ -244,6 +246,8 @@ three different data stores. That method in short:
 * *translates* all `DOI` back to local identifiers
 * *looks* up all local idenfiers in the `Fetcher` datastore
 * puts everything into a JSON file and sends it on the wire
+
+![](static/uJAWsAE.png)
 
 There is a bit of variance in the data, e.g. medium number of relevant edges is
 about 10-20, with maximum of a few thousand edges for a few hundred of
