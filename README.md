@@ -275,4 +275,50 @@ sw.Recordf("mapped %d dois back to ids", ss.Len())
 sw.LogTable()
 ```
 
+## Performance wrap up
 
+* sqlite3 is amazing (total of about 500G database sizes)
+* we get 100 requests/s sustained on a laptop
+* for 99.% of the requests, we can serve queries in less than 170 ms
+
+KISS benchmark via [pv](https://man7.org/linux/man-pages/man1/pv.1.html)
+
+```shell
+$ zstdcat -T0 go/ckit/fixtures/id-1m.tsv.zst | \
+    parallel -j 40 "curl -s http://localhost:3000/id/{}" | pv -l > /dev/null
+... [ 139 /s]
+```
+
+After a random sample of ~50K requests:
+
+```python
+In [1]: import pandas as pd
+
+In [15]: df = pd.read_csv("took")
+
+In [16]: df.describe()
+Out[16]:
+        0.000781515
+count  53055.000000
+mean       0.005550
+std        0.017589
+min        0.000000
+25%        0.001004
+50%        0.001800
+75%        0.004285
+max        1.048332
+
+In [17]: df.quantile([.25, .5, .75, .95, .99, 1])
+Out[17]:
+      0.000781515
+0.25     0.001004
+0.50     0.001800
+0.75     0.004285
+0.95     0.019116
+0.99     0.074674
+1.00     1.048332
+```
+
+So, we have outliers that take over 1s, but 99% of requests are handled in 74ms
+or less; dataset is relatively static and can be cached or warmed. Predicable
+outliers.
