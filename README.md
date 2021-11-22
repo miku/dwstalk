@@ -8,6 +8,15 @@ A data web service, lightning talk.
 
 A few notes on KISS, sqlite and Go (and [citation graphs](https://arxiv.org/abs/2110.06595)).
 
+Outline:
+
+* the data side
+* the server side
+
+![](static/45582_reading_lg.gif)
+
+## Starting point
+
 * starting point was a project that should result in an API (queried by a
   frontend at [SLUB DD](https://www.slub-dresden.de/))
 * fusing metadata from 200M documents (index) with graph data (citations, about 1B edges)
