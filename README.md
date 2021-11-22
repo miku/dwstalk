@@ -230,8 +230,8 @@ func (s *Server) handleIndex() http.HandlerFunc {
 The main work is done in a handler querying and fusing data from the currently
 three different data stores. That method in short:
 
-* *translates* an id to a "DOI" (via `IdentifierDatabase`)
-* *looks* up edges related to that `DOI` (via `OciDatabase`)
+* *translates* an id to a "DOI", via `IdentifierDatabase`
+* *looks* up edges related to that `DOI`, via `OciDatabase`
 * *translates* all `DOI` back to local identifiers
 * *looks* up all local idenfiers in the `Fetcher` datastore
 * puts everything into a JSON file and sends it on the wire
@@ -250,7 +250,7 @@ helper, a poor mans tracer, if you want.
 //
 // 2021/09/29 17:22:40 timings for hTHc
 //
-// > XVlB    0    0s              0.00    started query for: ai-49-aHR0cDovL2R4LmRvaS5vcmcvMTAuMTIxMC9qYy4yMDExLTAzODU
+// > XVlB    0    0s              0.00    started query for: ai-49-aHR0cDovL2R4L...
 // > XVlB    1    134.532µs       0.00    found doi for id: 10.1210/jc.2011-0385
 // > XVlB    2    67.918529ms     0.24    found 0 outbound and 4628 inbound edges
 // > XVlB    3    32.293723ms     0.12    mapped 4628 dois back to ids
