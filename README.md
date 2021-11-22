@@ -142,5 +142,137 @@ Not quite 1B rows per minute, but about 42,840,000 per minute w/o indexing.
 
 * [https://lobste.rs/s/z4gahf/inserting_one_billion_rows_sqlite_under](https://lobste.rs/s/z4gahf/inserting_one_billion_rows_sqlite_under)
 
-Anyway, we can turn our original 1B dataset into a indexed database in 75 minutes.
+Oh, wait, was that just the headline?
+
+> Inserting One Billion Rows in SQLite Under A Minute
+> Current Best: 100M rows inserts in 33 seconds.
+> Shouldn’t this blog post be called Inserting One Hundred Million Rows in
+> SQLite Under A Minute?
+
+Anyway, we can turn our original 1B dataset into a indexed database in 75
+minutes.
+
+## Web Service Outline
+
+I found this useful:
+
+* [How I write HTTP services after eight years.](https://pace.dev/blog/2018/05/09/how-I-write-http-services-after-eight-years.html)
+
+A few thinks that I hear people ask:
+
+* What is a good ORM for Go?
+
+And I think ...
+
+> Go feels like it isn't even half as productive compared to working with
+> toolkits like SQLAlchemy, Diesel, Hibernate or ActiveRecord. -- [https://conroy.org/introducing-sqlc](https://conroy.org/introducing-sqlc)
+
+There is something KISS in using plain SQL.
+
+My current answer would be:
+
+* plain [database/sql](https://pkg.go.dev/database/sql)
+* [sqlx](https://github.com/jmoiron/sqlx)
+
+Or, if you really want extra tooling:
+
+* [sqlc](https://sqlc.dev/)
+
+Anyway, I choose - again - [sqlx](https://github.com/jmoiron/sqlx)
+
+## Web Service
+
+So, KISS again.
+
+* a couple of sqlite database (can be generated with e.g. makta or other tools)
+* a slight abstraction over "fetching" index data, `Fetcher` (various implementation)
+* a server holding connections to each of these database
+
+```go
+    // Setup server.
+    srv := &ckit.Server{
+        IdentifierDatabase:     identifierDatabase,
+        OciDatabase:            ociDatabase,
+        IndexData:              fetcher,
+        Router:                 mux.NewRouter(),
+        StopWatchEnabled:       *enableStopWatch,
+        ...
+    }
+    ...
+```
+
+Methods are defined on the server, returning `http.HandlerFunc` values.
+
+```go
+type Server struct {
+    IdentifierDatabase *sqlx.DB
+    OciDatabase        *sqlx.DB
+    IndexData          Fetcher
+    // Router to register routes on.
+    Router *mux.Router
+    // StopWatch is a builtin, simplistic tracer.
+    StopWatchEnabled bool
+    ...
+}
+
+func (s *Server) handleIndex() http.HandlerFunc {
+    return func(w http.ResponseWriter, r *http.Request) {
+        // TODO: Render docs.
+        fmt.Fprintf(w, "labed")
+    }
+}
+
+...
+```
+
+## Performance again
+
+The main work is done in a handler querying and fusing data from the currently
+three different data stores. That method in short:
+
+* *translates* an id to a "DOI" (via `IdentifierDatabase`)
+* *looks* up edges related to that `DOI` (via `OciDatabase`)
+* *translates* all `DOI` back to local identifiers
+* *looks* up all local idenfiers in the `Fetcher` datastore
+* puts everything into a JSON file and sends it on the wire
+
+There is a bit of variance in the data, e.g. medium number of relevant edges is
+about 10-20, with maximum of a few thousand edges for a few hundred of
+documents.
+
+In order to measure performance, wrote a little
+[`StopWatch`](https://github.com/miku/labe/blob/main/go/ckit/stopwatch.go)
+helper, a poor mans tracer, if you want.
+
+```go
+// StopWatch allows to record events over time and render them in a pretty
+// table. Example log output (via stopwatch.LogTable()).
+//
+// 2021/09/29 17:22:40 timings for hTHc
+//
+// > XVlB    0    0s              0.00    started query for: ai-49-aHR0cDovL2R4LmRvaS5vcmcvMTAuMTIxMC9qYy4yMDExLTAzODU
+// > XVlB    1    134.532µs       0.00    found doi for id: 10.1210/jc.2011-0385
+// > XVlB    2    67.918529ms     0.24    found 0 outbound and 4628 inbound edges
+// > XVlB    3    32.293723ms     0.12    mapped 4628 dois back to ids
+// > XVlB    4    3.358704ms      0.01    recorded unmatched ids
+// > XVlB    5    68.636671ms     0.25    fetched 2567 blob from index data store
+// > XVlB    6    105.771005ms    0.38    encoded JSON
+// > XVlB    -    -               -       -
+// > XVlB    S    278.113164ms    1.00    total
+//
+// By default a stopwatch is disabled, which means all functions will be noops,
+// use SetEnabled to toggle mode.
+```
+
+Zero value works:
+
+```go
+var sw StopWatch
+sw.SetEnabled(true)
+sw.Recordf("started query for: %s", vars["id"])
+...
+sw.Recordf("mapped %d dois back to ids", ss.Len())
+sw.LogTable()
+```
+
 
