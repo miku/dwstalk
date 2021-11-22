@@ -335,3 +335,31 @@ Out[17]:
 So, we have outliers that take over 1s, but 99% of requests are handled in 74ms
 or less; dataset is relatively static and can be cached or warmed. Predicable
 outliers.
+
+## Summary
+
+* two tools (makta, plus another hack)
+* one server
+* tracing helper
+* three version of a data fetcher (microblob, sqlite3, solr)
+
+In total 1612 lines of Go.
+
+```shell
+$ tokei go
+===============================================================================
+ Language            Files        Lines         Code     Comments       Blanks
+===============================================================================
+ Go                      9         1612         1136          358          118
+ Makefile                1           32           26            0            6
+ Markdown                3          401            0          306           95
+ Python                  1           30            4           22            4
+===============================================================================
+ Total                  14         2075         1166          686          223
+===============================================================================
+```
+
+Simplicity is joy.
+
+
+## Thanks
