@@ -350,11 +350,9 @@ After a random sample of ~50K requests:
 
 ```python
 In [1]: import pandas as pd
-
-In [15]: df = pd.read_csv("took")
-
-In [16]: df.describe()
-Out[16]:
+In [2]: df = pd.read_csv("took")
+In [3]: df.describe()
+Out[3]:
         0.000781515
 count  53055.000000
 mean       0.005550
@@ -365,8 +363,8 @@ min        0.000000
 75%        0.004285
 max        1.048332
 
-In [17]: df.quantile([.25, .5, .75, .95, .99, 1])
-Out[17]:
+In [4]: df.quantile([.25, .5, .75, .95, .99, 1])
+Out[4]:
       0.000781515
 0.25     0.001004
 0.50     0.001800
