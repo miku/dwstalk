@@ -23,7 +23,7 @@ Outline and idea for a batch processing system existed, but we thought:
 
 * Can we fuse data on-the-fly when it is requested?
 
-![](static/Labe.png)
+![](static/Untitled-2020-06-15-1740.png)
 
 ## Initial Import
 
