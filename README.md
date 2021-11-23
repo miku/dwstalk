@@ -20,8 +20,8 @@ Outline:
 
 ## Starting point
 
-* starting point has been a project that should result in an API (will serve a
-  snippet for catalog frontend at [SLUB DD](https://www.slub-dresden.de/))
+* starting point has been a project that should result in an API (will serve
+  snippets for a [catalog frontend](https://www.slub-dresden.de/))
 * fusing metadata from 200M documents (index) with graph data (citations, about 1B edges)
 
 Outline and idea for a *batch* processing system existed - but would it be
