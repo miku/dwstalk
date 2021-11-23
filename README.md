@@ -214,7 +214,7 @@ I found this useful:
 
 * [How I write HTTP services after eight years.](https://pace.dev/blog/2018/05/09/how-I-write-http-services-after-eight-years.html)
 
-A few thinks that I hear people ask:
+A few things that I hear people ask:
 
 * What is a good ORM for Go?
 
@@ -291,6 +291,8 @@ three different data stores. That method in short:
 * *translates* all `DOI` back to local identifiers
 * *looks* up all local idenfiers in the `Fetcher` datastore
 * puts everything into a JSON file and sends it on the wire
+
+![](static/Labe-Sequence.png)
 
 ![](static/uJAWsAE.png)
 
