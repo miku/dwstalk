@@ -2,9 +2,14 @@
 
 A data web service, lightning talk.
 
-> Leipzig Gophers #23, 2021-11-23, 19:00 CET
+> [Leipzig Gophers](https://golangleipzig.space/)
+> [#23](https://golangleipzig.space/posts/meetup-23-invitation/), 2021-11-23,
+> 19:00 CET
 
-A few notes on KISS, sqlite and Go (and [citation graphs](https://arxiv.org/abs/2110.06595)).
+A few notes on [KISS](https://en.wikipedia.org/wiki/KISS_principle),
+[sqlite](https://sqlite.org) and Go (and [citation
+graphs](https://arxiv.org/abs/2110.06595)) - from a recent
+[project](https://github.com/miku/labe).
 
 Outline:
 
