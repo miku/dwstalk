@@ -30,6 +30,12 @@ Outline and idea for a batch processing system existed, but we thought:
 
 ![](static/Untitled-2020-06-15-1740.png)
 
+## KISS
+
+> “Our aim,” he said, “is to get results cheaper, sooner, and better through
+> application of common sense to tough problems. If it works, don’t fix it.”
+> “Keep it simple, stupid—KISS—is our constant reminder.” -- [Biographical Memoir](http://www.nasonline.org/publications/biographical-memoirs/memoir-pdfs/johnson-clarence.pdf#page=13)
+
 ## Initial Import
 
 The graph data looks like this - two columns, like an simple edge list:
