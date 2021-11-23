@@ -328,7 +328,6 @@ Zero value works:
 
 ```go
 var sw StopWatch
-sw.SetEnabled(true)
 sw.Recordf("started query for: %s", vars["id"])
 ...
 sw.Recordf("mapped %d dois back to ids", ss.Len())
