@@ -24,9 +24,8 @@ Outline:
   frontend at [SLUB DD](https://www.slub-dresden.de/))
 * fusing metadata from 200M documents (index) with graph data (citations, about 1B edges)
 
-Outline and idea for a batch processing system existed, but we thought:
-
-* Can we fuse data on-the-fly when it is requested?
+Outline and idea for a batch processing system existed - but would it be
+feasible to fuse data on-the-fly at request time?
 
 ![](static/Untitled-2020-06-15-1740.png)
 
