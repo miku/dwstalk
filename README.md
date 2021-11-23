@@ -67,7 +67,7 @@ First idea was to keep it simple and to load the TSV into
 [sqlite](https://sqlite.org/index.html) - the [most
 deployed](https://www.sqlite.org/mostdeployed.html) database on the planet.
 
-A lesser known fact about sqlite3:
+A lesser known fact about sqlite:
 
 > [sqlite](https://www.sqlite.org/locrsf.html) is a Recommended Storage Format
   for datasets according to the US Library of Congress (beside CSV, XML, JSON, etc.)
@@ -90,6 +90,41 @@ Minimal tool that:
 * takes a two-column file
 * breaks it up into smaller chunks (e.g. 64MB)
 * spawns a sqlite3 call for each chunk and use `.import`
+
+Data is [piped into](https://github.com/miku/makta/blob/6dfae3bbd480bc330a30b53898b0562e8c7fbfb1/utils.go#L26-L56) the subprocess' stdin from a buffer:
+
+```go
+// RunImport reads data to be imported (e.g. two column TSV) from reader into a
+// given database. Before importing, read commands from a given init file.
+func RunImport(r io.Reader, initFile, outputFile string) (int64, error) {
+	cmd := exec.Command("sqlite3", "--init", initFile, outputFile)
+	cmdStdin, err := cmd.StdinPipe()
+	if err != nil {
+		return 0, err
+	}
+	var (
+		wg      sync.WaitGroup // may use just chan bool
+		copyErr error
+		written int64
+	)
+	wg.Add(1)
+	go func() {
+		defer wg.Done()
+		defer cmdStdin.Close()
+		n, err := io.Copy(cmdStdin, r)
+		if err != nil {
+			copyErr = fmt.Errorf("copy failed: %w", err)
+			return
+		}
+		written += n
+	}()
+	if _, err := cmd.CombinedOutput(); err != nil {
+		return written, fmt.Errorf("exec failed: %w", err)
+	}
+	wg.Wait()
+	return written, copyErr
+}
+```
 
 ## Performance
 
