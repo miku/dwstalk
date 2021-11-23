@@ -20,12 +20,12 @@ Outline:
 
 ## Starting point
 
-* starting point was a project that should result in an API (will be for a
-  catalog frontend at [SLUB DD](https://www.slub-dresden.de/))
+* starting point has been a project that should result in an API (will serve a
+  snippet for catalog frontend at [SLUB DD](https://www.slub-dresden.de/))
 * fusing metadata from 200M documents (index) with graph data (citations, about 1B edges)
 
-Outline and idea for a batch processing system existed - but would it be
-feasible to fuse data on-the-fly at request time?
+Outline and idea for a *batch* processing system existed - but would it be
+feasible to fuse data *on-the-fly* at request time?
 
 ![](static/Untitled-2020-06-15-1740.png)
 
@@ -382,8 +382,8 @@ outliers.
 
 * two tools (makta, plus another hack)
 * one server
-* tracing helper
-* three version of a data fetcher (microblob, sqlite3, solr)
+* benchmarking helper
+* three version of a data fetcher ([microblob](https://github.com/miku/microblob), [sqlite3](https://sqlite.org), [solr](https://solr.apache.org/))
 
 In total 1612 lines of Go.
 
