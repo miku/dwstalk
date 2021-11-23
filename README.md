@@ -132,10 +132,10 @@ func RunImport(r io.Reader, initFile, outputFile string) (int64, error) {
 
 Tweak various [pragma](https://www.sqlite.org/pragma.html):
 
-```
+```sql
 PRAGMA journal_mode = OFF;
 PRAGMA synchronous = 0;
-PRAGMA cache_size = %d;
+PRAGMA cache_size = 1000000;     -- x $(getconf PAGESIZE)
 PRAGMA locking_mode = EXCLUSIVE;
 ```
 
