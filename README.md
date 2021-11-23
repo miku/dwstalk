@@ -20,8 +20,8 @@ Outline:
 
 ## Starting point
 
-* starting point was a project that should result in an API (queried by a
-  frontend at [SLUB DD](https://www.slub-dresden.de/))
+* starting point was a project that should result in an API (will be for a
+  catalog frontend at [SLUB DD](https://www.slub-dresden.de/))
 * fusing metadata from 200M documents (index) with graph data (citations, about 1B edges)
 
 Outline and idea for a batch processing system existed - but would it be
@@ -320,8 +320,6 @@ helper, a poor mans tracer, if you want.
 // > XVlB    -    -               -       -
 // > XVlB    S    278.113164ms    1.00    total
 //
-// By default a stopwatch is disabled, which means all functions will be noops,
-// use SetEnabled to toggle mode.
 ```
 
 Zero value works:
