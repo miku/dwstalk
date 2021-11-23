@@ -91,7 +91,9 @@ Minimal tool that:
 * breaks it up into smaller chunks (e.g. 64MB)
 * spawns a sqlite3 call for each chunk and use `.import`
 
-Data is [piped into](https://github.com/miku/makta/blob/6dfae3bbd480bc330a30b53898b0562e8c7fbfb1/utils.go#L26-L56) the subprocess' stdin from a buffer:
+Data is [piped
+into](https://github.com/miku/makta/blob/6dfae3bbd480bc330a30b53898b0562e8c7fbfb1/utils.go#L26-L56)
+the subprocess' stdin from a buffer, reader:
 
 ```go
 // RunImport reads data to be imported (e.g. two column TSV) from reader into a
