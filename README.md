@@ -361,3 +361,8 @@ Simplicity is joy.
 
 
 ## Thanks
+
+Credits:
+
+* [https://etc.usf.edu/clipart/](https://etc.usf.edu/clipart/)
+* [https://github.com/excalidraw/excalidraw](https://github.com/excalidraw/excalidraw)
