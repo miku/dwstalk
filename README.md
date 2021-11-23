@@ -294,7 +294,7 @@ three different data stores. That method in short:
 
 ![](static/Labe-Sequence.png)
 
-![](static/uJAWsAE.png)
+<!-- ![](static/uJAWsAE.png) -->
 
 There is a bit of variance in the data, e.g. medium number of relevant edges is
 about 10-20, with maximum of a few thousand edges for a few hundred of
