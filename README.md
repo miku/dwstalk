@@ -292,7 +292,7 @@ three different data stores. That method in short:
 * *looks* up all local idenfiers in the `Fetcher` datastore
 * puts everything into a JSON file and sends it on the wire
 
-![](static/Labe-Sequence-M.png)
+![](static/Labe-Sequence-74-M.png)
 
 <!-- ![](static/uJAWsAE.png) -->
 
