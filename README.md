@@ -3,13 +3,13 @@
 A data web service, lightning talk.
 
 > [Leipzig Gophers](https://golangleipzig.space/)
-> [#23](https://golangleipzig.space/posts/meetup-23-invitation/), 2021-11-23,
+> [#23](https://golangleipzig.space/posts/meetup-23-invitation/), 2021-11-23
 > 19:00 CET
 
 A few notes on [KISS](https://en.wikipedia.org/wiki/KISS_principle),
 [sqlite](https://sqlite.org) and Go (and [citation
 graphs](https://arxiv.org/abs/2110.06595)) - from a recent
-[project](https://github.com/miku/labe).
+[project](https://github.com/grossweber/labe).
 
 Outline:
 
@@ -20,12 +20,12 @@ Outline:
 
 ## Starting point
 
-* starting point has been a project that should result in an API (will serve
-  snippets for a [catalog frontend](https://www.slub-dresden.de/))
-* fusing metadata from 200M documents (index) with graph data (citations, about 1B edges)
+* starting point has been a project that will serve JSON through an HTTP API
+* fusing metadata from ~200M documents (an index) with graph data (citations,
+  ~1B edges)
 
-Outline and idea for a *batch* processing system existed - but would it be
-feasible to fuse data *on-the-fly* at request time?
+One idea would be to *batch* process the data - but would it be feasible to
+fuse data *on-the-fly* at request time?
 
 ![](static/Untitled-2020-06-15-1740.png)
 
@@ -56,6 +56,9 @@ Or for real:
     10.1016/j.ygcen.2020.113526     10.1637/11097-042015-reg.1
     10.1016/j.ympev.2006.11.027     10.1111/j.0300-3256.2004.00160.x
     10.1016/s0002-8703(05)80031-6   10.1161/01.cir.79.4.756
+
+Undirected, one direction `->` corresponds to "citing X", the other `<-` to,
+e.g. "cited by X".
 
 There are 1,186,958,897 rows, 10GB compressed, 57GB uncompressed - we'll need
 simple queries only, akin to a key value store, e.g. getting all values for a
