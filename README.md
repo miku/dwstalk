@@ -293,25 +293,25 @@ three different data stores. That method in short:
 * *looks* up edges related to that `DOI`, via `OciDatabase`
 * *translates* all `DOI` back to local identifiers
 * *looks* up all local idenfiers in the `Fetcher` datastore
-* puts everything into a JSON file and sends it on the wire
+* serialize data as JSON and put it on the wire
 
 ![](static/Labe-Sequence-74-M.png)
 
 <!-- ![](static/uJAWsAE.png) -->
 
-There is a bit of variance in the data, e.g. medium number of relevant edges is
+There is a bit of variance in the data, e.g. medium number of relevant edges may be
 about 10-20, with maximum of a few thousand edges for a few hundred of
 documents.
 
 In order to measure performance, wrote a little
 [`StopWatch`](https://github.com/miku/labe/blob/main/go/ckit/stopwatch.go)
-helper, a poor mans tracer, if you want.
+helper, a poor man's tracer, if you want.
 
 ```go
 // StopWatch allows to record events over time and render them in a pretty
 // table. Example log output (via stopwatch.LogTable()).
 //
-// 2021/09/29 17:22:40 timings for hTHc
+// 2021/09/29 17:22:40 timings for XVlB
 //
 // > XVlB    0    0s              0.00    started query for: ai-49-aHR0cDovL2R4L...
 // > XVlB    1    134.532µs       0.00    found doi for id: 10.1210/jc.2011-0385
