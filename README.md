@@ -257,8 +257,6 @@ So, KISS again.
         IdentifierDatabase:     identifierDatabase,
         OciDatabase:            ociDatabase,
         IndexData:              fetcher,
-        Router:                 mux.NewRouter(),
-        StopWatchEnabled:       *enableStopWatch,
         ...
     }
     ...
@@ -296,7 +294,7 @@ three different data stores. That method in short:
 * *translates* an id to a "DOI", via `IdentifierDatabase`
 * *looks* up edges related to that `DOI`, via `OciDatabase`
 * *translates* all `DOI` back to local identifiers
-* *looks* up all local idenfiers in the `Fetcher` datastore
+* *fetches* docs for all local idenfiers from `Fetcher` datastore
 * serialize data as JSON and put it on the wire
 
 ![](static/Labe-Sequence-74-M.png)
