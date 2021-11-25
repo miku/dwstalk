@@ -244,7 +244,11 @@ Anyway, I chose - again - [sqlx](https://github.com/jmoiron/sqlx).
 So, KISS again.
 
 * a couple of sqlite database (can be generated with e.g. makta or other tools)
-* a slight abstraction over "fetching" index data, `Fetcher` (various implementation)
+* a slight abstraction over "fetching" index data,
+  [`Fetcher`](https://github.com/GROSSWEBER/labe/blob/1059b933d5e3d84ad5d7bea495ace454e2fc5567/go/ckit/fetcher.go#L33-L36)
+(various implementation, e.g.
+[sqlite](https://github.com/GROSSWEBER/labe/blob/1059b933d5e3d84ad5d7bea495ace454e2fc5567/go/ckit/fetcher.go#L83-L90),
+[solr](https://github.com/GROSSWEBER/labe/blob/1059b933d5e3d84ad5d7bea495ace454e2fc5567/go/ckit/fetcher.go#L120-L125))
 * a server holding connections to each of these database
 
 ```go
