@@ -20,9 +20,9 @@ Outline:
 
 ## Starting point
 
-* starting point has been a project that will serve JSON through an HTTP API
-* fusing metadata from ~200M documents (an index) with graph data (citations,
-  ~1B edges)
+* starting point: http server serving JSON
+* fusing metadata from ~200M documents (an index) with graph data
+  ([citations](https://opencitations.net/), ~1B edges)
 
 One idea would be to *batch* process the data - but would it be feasible to
 fuse data *on-the-fly* at request time?
@@ -92,7 +92,7 @@ Minimal tool that:
 
 * takes a two-column file
 * breaks it up into smaller chunks (e.g. 64MB)
-* spawns a sqlite3 call for each chunk and use `.import`
+* spawns a sqlite3 process for each chunk and uses `.import`
 
 Data is [piped
 into](https://github.com/miku/makta/blob/6dfae3bbd480bc330a30b53898b0562e8c7fbfb1/utils.go#L26-L56)
