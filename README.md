@@ -9,7 +9,7 @@ A data web service, lightning talk.
 A few notes on [KISS](https://en.wikipedia.org/wiki/KISS_principle),
 [sqlite](https://sqlite.org) and Go (and [citation
 graphs](https://arxiv.org/abs/2110.06595)) - from a recent
-[project](https://github.com/grossweber/labe).
+[project](https://github.com/slub/labe).
 
 Outline:
 
