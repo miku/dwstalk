@@ -380,7 +380,7 @@ Out[4]:
 ```
 
 So, we have outliers that take over 1s, but 99% of requests are handled in 74ms
-or less; dataset is relatively static and can be cached or warmed. Predicable
+or less; dataset is relatively static and can be cached or warmed. Predictable
 outliers.
 
 ## Summary
